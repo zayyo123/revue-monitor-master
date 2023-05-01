@@ -1,10 +1,3 @@
-/*
- * @Descripttion: 
- * @Author: Wang Dejiang(aei)
- * @Date: 2022-08-07 16:21:52
- * @LastEditors: arvin(王德江)
- * @LastEditTime: 2022-08-30 19:47:35
- */
 import { timing, ComponentMount, ComponentBlank } from './comp/index' 
 import jsError  from './comp/jsError'
 import wsError from './comp/wsError'

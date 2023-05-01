@@ -1,10 +1,3 @@
-/*
- * @Descripttion: 
- * @Author: Wang Dejiang(aei)
- * @Date: 2022-08-07 18:31:23
- * @LastEditors: Wang Dejiang(aei)
- * @LastEditTime: 2022-08-07 18:31:25
- */
 import axios from "axios";
 
 const service = axios.create({
