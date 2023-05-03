@@ -4,6 +4,7 @@ import axios from "axios";
 const service = axios.create({
   baseURL:
     "https://koa-monitorrver-koa-dxsjkmwnnu.cn-hangzhou.fcapp.run/api/mp",
+  // 请求超时时间
   timeout: 15000,
 });
 
