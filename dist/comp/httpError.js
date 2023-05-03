@@ -67,6 +67,7 @@ export function injectXHR() {
   let oldOpen = XMLHttpRequest.prototype.open; //缓存老的open方法
   XMLHttpRequest.prototype.open = function (method, url, async) {
     //重写open方法
+    // 如果 url 中包含了 /mp/plugin 字符串就取消监控
     if (!/mp\/plugin/.test(url)) {
       //tracker会向sls发送日志的，所以不监控这个，否则会引起死循环
       this.logData = { method, url, async }; //增强功能,把初始化数据保存为对象的属性
@@ -84,7 +85,7 @@ export function injectXHR() {
         let duration = Date.now() - startTime; //在结束时记录经过的时间
         let status = this.status; //200 or 500
         if (parseInt(status) === 200) return;
-        let statusText = this.statusText; // or Server Error
+        let statusText = this.statusText; // 服务器返回的 HTTP 状态文本
         let data = {
           title: document.title,
           url: location.href, //location本身是一个对象，包含当前url有关的信息
@@ -106,7 +107,7 @@ export function injectXHR() {
       };
       this.addEventListener("load", handler("load"), false); //传输完成，所有数据保存在 response 中
       this.addEventListener("error", handler("error"), false); //500也算load,只有当请求发送不成功时才是error
-      this.addEventListener("abort", handler("abort"), false); //放弃
+      this.addEventListener("abort", handler("abort"), false); //放弃请求
       //handler("load")相当于1个柯理化
     }
     return oldSend.apply(this, arguments);
