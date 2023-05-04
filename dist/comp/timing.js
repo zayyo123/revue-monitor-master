@@ -1,3 +1,4 @@
+// 收集FMP和LCP和首屏加载时间
 import onload from "../utils/onload";
 import http from "../utils/request";
 
